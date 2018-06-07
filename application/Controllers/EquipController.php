@@ -124,16 +124,10 @@ class EquipController extends Controller
     }
 
 
-    if($this->request->getPost('gantipics') == 'ya')
-    {
-      //unlink('/imgs/'.url_title(strtolower($this->request->getPost('nama'))).'.png');
-      $pics = $this->pics();
-    }
 
  	$post = [
     	'nama' => esc($this->request->getPost('nama')),
       	'type' => esc($this->request->getPost('type')),
-      	'pics' => $pics ?? '',
       	'stats' => esc($this->request->getPost('stats')),
       	'drop' => esc($this->request->getPost('drop')),
       	'blacksmith' => esc($this->request->getPost('blacksmith')),
@@ -145,6 +139,15 @@ class EquipController extends Controller
       'slug' => url_title(strtolower($this->request->getPost('nama')))
     ];
     $result = array_merge($post,$po);
+
+    if($this->request->getPost('gantipics') == 'ya')
+    {
+      //unlink('/imgs/'.url_title(strtolower($this->request->getPost('nama'))).'.png');
+        $pics = $this->pics();
+		$dataa = [ 'pics' => $pics ];
+		$result = array_merge($result,$dataa);
+    }
+
 
     if($item->update($id,$result))
     {
@@ -213,7 +216,7 @@ class EquipController extends Controller
     $post = [
     	'nama' => esc($this->request->getPost('nama')),
       	'type' => esc($this->request->getPost('type')),
-      	'pics' => $pics ?? '',
+
       	'stats' => esc($this->request->getPost('stats')),
       	'drop' => esc($this->request->getPost('drop')),
       	'blacksmith' => esc($this->request->getPost('blacksmith')),
