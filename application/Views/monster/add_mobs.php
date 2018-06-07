@@ -87,9 +87,9 @@ $db = \Config\Database::connect();
       <div class="form-group">
         <label>Gambar</label><br>
 
-        <input type="radio" name="withimg" value="y" > Dengan gambar
+        <input type="radio" name="withimg" value="ya" > Dengan gambar
         <input type="text" name="pics" class="form-control">
-        <div class="help-block">upload dulu di <a href="https://ctrlq.org/images/">ctrlq.org</a> copy disini linknya</div>
+        <div class="help-block">upload dulu di <a href="https://postimages.org">postimages.org</a> copy disini linknya</div>
       </div>
 
 

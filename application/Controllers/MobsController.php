@@ -5,8 +5,10 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\Mobs;
 
+
 class MobsController extends Controller
 {
+
   function __construct(...$p)
   {
     parent::__construct(...$p);
@@ -19,7 +21,9 @@ class MobsController extends Controller
   {
     $mobs = new Mobs();
 
-    echo view('header',['title' => 'Monster List']);
+    echo view('header',[
+      'title' => 'Daftar Monster'
+    ]);
     echo view('monster/mobs',[
     	'data' => $mobs->asObject()->findAll()
     ]);
@@ -30,12 +34,15 @@ class MobsController extends Controller
   {
     $mobs = new Mobs();
     $mons = $mobs->asObject()->findWhere('slug',$slug);
+
     if(!$mons)
     {
       return redirect('/');
     }
 
-    echo view('header',['title' => $mons[0]->nama]);
+    echo view('header',[
+      'title' => $mons[0]->nama
+    ]);
     echo view('monster/mobs',[
     	'data' => $mons
     ]);
@@ -46,12 +53,15 @@ class MobsController extends Controller
   {
     $mobs = new Mobs();
     $mons = $mobs->asObject()->findWhere('mapslug',$slug);
+
     if(!$mons)
     {
       return redirect('/');
     }
 
-    echo view('header',['title' => $mons[0]->map]);
+    echo view('header',[
+      'title' => $mons[0]->map
+    ]);
     echo view('monster/mobs',[
     	'data' => $mons,
       	'dut' => 'ok'
@@ -62,6 +72,7 @@ class MobsController extends Controller
   public function add()
   {
     $this->needLogin();
+
     echo view('header');
     echo view('monster/add_mobs');
     echo view('footer');
@@ -70,6 +81,7 @@ class MobsController extends Controller
   public function addPost()
   {
     $this->needLogin();
+
     $mobs = new Mobs();
 
     $req = $this->request;
@@ -82,7 +94,6 @@ class MobsController extends Controller
     	'hp' => esc($req->getPost('hp')),
     	'xp' => esc($req->getPost('xp')),
     	'level' => esc($req->getPost('level')),
-
     	'map' => esc($req->getPost('map')),
       	'mapslug' => url_title(strtolower($req->getPost('map'))),
     	'kandang' => esc($req->getPost('kandang')),
@@ -94,14 +105,15 @@ class MobsController extends Controller
 
     if($req->getPost('withimg') == "ya")
     {
-      $pics = $this->pics();
-$dataa = [ 'pics' => $pics ];
-$data = array_merge($data,$dataa);
+        $pics = $this->pics();
+		$dataa = [ 'pics' => $pics ];
+		$data = array_merge($data,$dataa);
     }
+
 
     if($mobs->insert($data))
     {
-      return redirect('/')->with('sukses','Data Monster telah di tambahkan');
+		return redirect('/')->with('sukses','Data Monster telah di tambahkan');
     }
 
   }
@@ -109,14 +121,16 @@ $data = array_merge($data,$dataa);
   public function edit($id)
   {
     $this->needLogin();
+
     $mobs = new Mobs();
 
     $mons = $mobs->find($id);
 
-    if(is_null($mons))
+    if(!$mons)
     {
       return redirect('/');
     }
+
     echo view('header');
     echo view('monster/edit_mobs',$mons);
     echo view('footer');
@@ -132,7 +146,7 @@ $data = array_merge($data,$dataa);
 
     $mons = $mobs->asObject()->find($id);
 
-    if(is_null($mons))
+    if(!$mons)
     {
       return redirect('/');
     }
@@ -145,7 +159,6 @@ $data = array_merge($data,$dataa);
     	'hp' => esc($req->getPost('hp')),
     	'xp' => esc($req->getPost('xp')),
     	'level' => esc($req->getPost('level')),
-
     	'map' => esc($req->getPost('map')),
       	'mapslug' => url_title(strtolower($req->getPost('map'))),
     	'kandang' => esc($req->getPost('kandang')),
@@ -156,10 +169,11 @@ $data = array_merge($data,$dataa);
 
     if($req->getPost('withimg') == "ya")
     {
-      $pics = $this->pics();
-$dataa = [ 'pics' => $pics ];
-$data = array_merge($data,$dataa);
+		$pics = $this->pics();
+		$dataa = [ 'pics' => $pics ];
+		$data = array_merge($data,$dataa);
     }
+
 
     if($mobs->update($id,$data))
     {
@@ -176,7 +190,7 @@ $data = array_merge($data,$dataa);
 
     $data = $item->asObject()->find($id);
 
-    if(is_null($data))
+    if(!$data)
     {
       return redirect('/');
     }
@@ -190,7 +204,7 @@ $data = array_merge($data,$dataa);
   private function pics()
   {
     $urlimg = file_get_contents($this->request->getPost('pics'));
-    $nama = 'imgs/mobs/'.url_title(strtolower($this->request->getPost('nama'))).'.png';
+    $nama = 'imgs/mobs/'.url_title(strtolower($this->request->getPost('nama'))).'-'.rand(00000,99999).'.png';
 
     file_put_contents($nama,$urlimg);
 
