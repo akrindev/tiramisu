@@ -1,9 +1,6 @@
 .env
-.git
-.gitignore
 /public/img
 /public/imgs
 /public/null
 /writable
 /vendor
-

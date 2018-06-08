@@ -84,10 +84,15 @@ helper('url');
                 <img src="/img/potum.gif" class="header-brand-img" alt="Toram-id.info logo"> Toram-id.info
               </a>
               <div class="d-flex order-lg-2 ml-auto">
-
-				<div class="nav-item d-md-flex">
-                  <a href="/fb-login" class="btn btn-sm btn-outline-primary">Login with FB</a>
-                </div>
+<?php if(!session('user')): ?>
+ 				<div class="nav-item d-md-flex">
+                   <a href="/fb-login" class="btn btn-sm btn-outline-primary">Login with FB</a>
+                 </div>
+ <?php else: ?>
+               <div class="nav-item d-md-flex">
+                 <a href="/logout" class="btn btn-sm btn-outline-danger">Keluar</a>
+              </div>
+<?php endif; ?>
               </div>
               <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
                 <span class="header-toggler-icon"></span>
