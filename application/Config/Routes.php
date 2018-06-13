@@ -89,6 +89,11 @@ $routes->post('/edit/(:num)/fillstats','FillstatsController::editing/$1');
 $routes->get('/delete/(:num)/fillstats','FillstatsController::delete/$1');
 
 $routes->get('/fb-login','FbAuth::login');
+
+
+// profile
+$routes->get('/u','UserController::profile');
+$routes->get('/u/(:num)','UserController::profile/$1');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

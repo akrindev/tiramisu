@@ -91,7 +91,9 @@ class FbAuth extends Controller
       return $this->register();
     }
 
+
     $sesi = [
+      	'namaku' => $nyong->name,
     	'fb_id' => $aku['id'],
 		'role'  => $nyong->role,
       	'user'  => true
@@ -123,7 +125,8 @@ class FbAuth extends Controller
     $sesi = [
     	'fb_id' => $aku->fb_id,
 		'role'  => $aku->role,
-      	'user'  => $aku->username
+      	'user'  => $aku->username,
+      	'namaku' => $aku->name
     ];
       session()->set($sesi);
       return redirect('/')->with('sukses','Selamat datang '.$gue->getName());

@@ -90,7 +90,37 @@ helper('url');
                  </div>
  <?php else: ?>
                <div class="nav-item d-md-flex">
-                 <a href="/logout" class="btn btn-sm btn-outline-danger">Keluar</a>
+
+                <div class="dropdown">
+                  <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                    <span class="avatar" style="background-image: url(https://graph.facebook.com/<?=session('fb_id')?>/picture?type=normal"></span>
+                    <span class="ml-2 d-none d-lg-block">
+                      <span class="text-default"><?=session('namaku')?></span>
+                    </span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item" href="/u">
+                      <i class="dropdown-icon fe fe-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-settings"></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="#">
+
+                      <i class="dropdown-icon fe fe-mail"></i> Catatanku
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-send"></i> Message
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-help-circle"></i> Need help?
+                    </a>
+                    <a class="dropdown-item" href="/logout">
+                      <i class="dropdown-icon fe fe-log-out"></i> Sign out
+                    </a>
+                  </div>
+                </div>
               </div>
 <?php endif; ?>
               </div>
