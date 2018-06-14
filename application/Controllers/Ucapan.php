@@ -100,5 +100,95 @@ class Ucapan extends Controller
     }
   }
 
+  function edit($slug)
+  {
+    if(!$slug) return redirect('/');
+
+    $ucap = new Ucap;
+
+    if(!$ucap->where('slug',$slug)->first())
+    {
+      return redirect('/')->with('gagal','Tautan salah atau mungkin telah di hapus');
+    }
+
+    $post = $ucap->where('slug',$slug)->asObject()->first();
+    $me = $ucap->getFbIdFromSlug($slug);
+
+    if(!session('user') && session('fb_id') != $me)
+    {
+      return redirect('/')->with('gagal','Anda tidak memiliki izin untuk mengedit');
+    }
+
+    echo view('header',[
+    	'title' => 'Edit Ucapan'
+    ]);
+    echo view('ucapan/edit',[
+      'ucapan' => $post->ucapan,
+      'cover' => $post->cover,
+      'id' => $post->id
+    ]);
+    echo view('footer');
+  }
+
+  function editSubmit()
+  {
+    $ucap = new Ucap;
+
+    //$file = $this->request->getFiles();
+
+
+    $ucapan = $this->request->getPost('ucapan');
+
+    $data = [
+    	'ucapan' => $ucapan,
+    ];
+
+    if($file = $this->request->getFile('cover'))
+    {
+      $name = $file->getRandomName();
+      $file->move('img/ucapan/',$name);
+      $dataCover = [
+      	'cover' => 'img/ucapan/'.$name
+      ];
+
+      $data = array_merge($data,$dataCover);
+    }
+
+    $r = explode('/',$this->request->getPost('redir'));
+    $r = end($r);
+    if($ucap->update($this->request->getPost('id'),$data))
+    {
+      return redirect('/ucapan/lihat/'.$r);
+    }
+
+  }
+
+
+  function delete($slug)
+  {
+
+    if(!$slug) return redirect('/');
+
+    $ucap = new Ucap;
+
+    if(!$ucap->where('slug',$slug)->first())
+    {
+      return redirect('/')->with('gagal','Tautan salah atau mungkin telah di hapus');
+    }
+
+    $post = $ucap->where('slug',$slug)->asObject()->first();
+    $me = $ucap->getFbIdFromSlug($slug);
+
+    if(!session('user') && session('fb_id') != $me)
+    {
+      return redirect('/')->with('gagal','Anda tidak memiliki izin untuk menghapus');
+    }
+
+    if($ucap->delete($post->id))
+    {
+      return redirect('/')->with('sukses','Ucapan pribadi di hapus');
+    }
+  }
+
 
 }

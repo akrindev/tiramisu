@@ -94,6 +94,7 @@ $routes->get('/fb-login','FbAuth::login');
 //ucapan
 $routes->get('/ucapan/buat','Ucapan::buat');
 $routes->post('/ucapan/buat','Ucapan::submit');
+$routes->post('/ucapan/edit','Ucapan::editSubmit');
 
 
 // profile

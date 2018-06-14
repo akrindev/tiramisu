@@ -107,9 +107,9 @@ helper('url');
                     <a class="dropdown-item" href="#" onClick="alert('under development')">
                       <i class="dropdown-icon fe fe-settings"></i> Settings
                     </a>
-                    <a class="dropdown-item" href="#" onClick="alert('under development')">
+                    <a class="dropdown-item" href="/ucapan/buat">
 
-                      <i class="dropdown-icon fe fe-mail"></i> Catatanku
+                     <i class="dropdown-icon fe fe-mail"></i> Tulis Ucapan
                     </a>
                     <a class="dropdown-item" href="#" onClick="alert('under development')">
                       <i class="dropdown-icon fe fe-send"></i> Message

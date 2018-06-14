@@ -14,5 +14,27 @@
                     </button>
                   </div>
                 </div>
+    <?php if(session('user')):
+   		 if(count($ucap) > 0): ?>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+	<div class="card">
+      <div class="card-header">
+        <h3 class="class-title">Ucapan pribadi saya</h3>
+      </div>
+      <table class="table card-table">
+<?php foreach($ucap as $u): ?>
+
+        <tr>
+          <td> <a href="/ucapan/lihat/<?=$u->slug?>"><?=substr($u->ucapan,0,15)?> </a></td>
+          <td> <a href="/ucapan/edit/<?=$u->slug?>" class="btn btn-sm btn-pill btn-outline-primary">edit</a> <a href="/ucapan/delete/<?=$u->slug?>" class="btn btn-sm btn-pill btn-outline-danger">hapus</a>  </td>
+        </tr>
+<?php endforeach;?>
+      </table>
+        </div>
+      </div>
+    </div>
+    <?php endif; endif;?>
   </div>
 </div>

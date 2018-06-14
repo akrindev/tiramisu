@@ -15,14 +15,22 @@ class UcapanModel extends Model
 
   function user_id($id)
   {
-
-
-
   	$userId = $this->builder()->join('users','users.id = ucapan.user_id')
       ->where('user_id',$id)
     	->get()
       ->getResult();
 
     return $userId[0]->name;
+  }
+
+
+  function getFbIdFromSlug($slug)
+  {
+  	$userId = $this->builder()->join('users','users.id = ucapan.user_id')
+      ->where('slug',$slug)
+    	->get()
+      ->getResult();
+
+    return $userId[0]->fb_id;
   }
 }

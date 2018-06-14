@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\User;
+use App\Models\UcapanModel as Ucap;
 
 class UserController extends Controller
 {
@@ -37,13 +38,18 @@ class UserController extends Controller
     $poto = "https://graph.facebook.com/{$aku['fb_id']}/picture?type=normal";
     $nama = $aku['name'];
 
+    $ucapan = new Ucap;
+
+    $ucap = $ucapan->where('user_id',$nyong->getUserId(session('fb_id')))->get()->getResult();
+
 
     echo view('header',[
     	'title' => 'Profile ' . $aku['name']
     ]);
     echo view('profile',[
     	'poto' => $poto,
-    	'nama'	=> $nama
+    	'nama'	=> $nama,
+      	'ucap' => $ucap
     ]);
     echo view('footer');
 
