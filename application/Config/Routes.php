@@ -91,6 +91,11 @@ $routes->get('/delete/(:num)/fillstats','FillstatsController::delete/$1');
 $routes->get('/fb-login','FbAuth::login');
 
 
+//ucapan
+$routes->get('/ucapan/buat','Ucapan::buat');
+$routes->post('/ucapan/buat','Ucapan::submit');
+
+
 // profile
 $routes->get('/u','UserController::profile');
 $routes->get('/u/(:num)','UserController::profile/$1');

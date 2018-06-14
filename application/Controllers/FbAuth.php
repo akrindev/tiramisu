@@ -125,7 +125,7 @@ class FbAuth extends Controller
     $sesi = [
     	'fb_id' => $aku->fb_id,
 		'role'  => $aku->role,
-      	'user'  => $aku->username,
+      	'user'  => true,
       	'namaku' => $aku->name
     ];
       session()->set($sesi);

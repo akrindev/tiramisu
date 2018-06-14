@@ -43,6 +43,8 @@ helper('url');
           baseUrl: 'http://toram-id.info'
       });
     </script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Dashboard Core -->
     <link href="/assets/css/dashboard.css" rel="stylesheet" />
     <script src="/assets/js/dashboard.js"></script>
@@ -102,18 +104,18 @@ helper('url');
                     <a class="dropdown-item" href="/u">
                       <i class="dropdown-icon fe fe-user"></i> Profile
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="#" onClick="alert('under development')">
                       <i class="dropdown-icon fe fe-settings"></i> Settings
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="#" onClick="alert('under development')">
 
                       <i class="dropdown-icon fe fe-mail"></i> Catatanku
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="#" onClick="alert('under development')">
                       <i class="dropdown-icon fe fe-send"></i> Message
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="#" onClick="alert('under development')">
                       <i class="dropdown-icon fe fe-help-circle"></i> Need help?
                     </a>
                     <a class="dropdown-item" href="/logout">
