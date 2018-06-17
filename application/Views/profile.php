@@ -28,7 +28,7 @@
 
         <tr>
           <td width="70%"> <a href="/ucapan/lihat/<?=$u->slug?>"><?=substr($u->ucapan,0,20).'...'?> </a><br>
-            <small class="text-muted"><?=$u->created_at?></small></td>
+            <small class="text-muted"><?=waktu($u->created_at)?></small></td>
           <td> <a href="/ucapan/edit/<?=$u->slug?>" class="btn btn-sm btn-pill btn-outline-primary">edit</a> <a href="/ucapan/delete/<?=$u->slug?>" class="btn btn-sm btn-pill btn-outline-danger" onClick="if(confirm('Yakin mau ngehapus?')) { return true; } else { return false;}">hapus</a>  </td>
         </tr>
 <?php endforeach;?>

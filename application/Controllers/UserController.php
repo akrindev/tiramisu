@@ -16,7 +16,7 @@ class UserController extends Controller
     parent::__construct(...$params);
 
     session()->start();
-    helper('form');
+    helper(['form','tanggal']);
   }
 
   public function profile($nama = false)
