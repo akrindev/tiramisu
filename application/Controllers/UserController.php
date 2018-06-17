@@ -40,7 +40,7 @@ class UserController extends Controller
 
     $ucapan = new Ucap;
 
-    $ucap = $ucapan->where('user_id',$nyong->getUserId(session('fb_id')))->get()->getResult();
+    $ucap = $ucapan->where('user_id',$nyong->getUserId(session('fb_id')))->orderBy('created_at','DESC')->get()->getResult();
 
 
     echo view('header',[

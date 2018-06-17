@@ -187,6 +187,7 @@ class Ucapan extends Controller
 
     if($ucap->delete($post->id))
     {
+      unlink($post->cover);
       return redirect('/')->with('sukses','Ucapan pribadi di hapus');
     }
   }
