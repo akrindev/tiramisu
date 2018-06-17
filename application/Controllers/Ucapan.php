@@ -143,9 +143,10 @@ class Ucapan extends Controller
     	'ucapan' => $ucapan,
     ];
 
-    if($file = $this->request->getFile('cover'))
+    if(!empty($_FILES['cover']['name']))
     {
-      $name = $file->getRandomName();
+      $file = $this->request->getFile('cover');
+      $name = $file->getRandomName() ?? sha1(rand(00,99)).'png';
       $file->move('img/ucapan/',$name);
       $dataCover = [
       	'cover' => 'img/ucapan/'.$name
