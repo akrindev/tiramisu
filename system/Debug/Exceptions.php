@@ -36,8 +36,6 @@
  * @filesource
  */
 
-require __DIR__.'/CustomExceptions.php';
-
 /**
  * Exceptions manager
  */
@@ -226,7 +224,7 @@ class Exceptions
 		}
 
 		// 404 Errors
-		if ($exception instanceof \CodeIgniter\PageNotFoundException)
+		if ($exception instanceof \CodeIgniter\Exceptions\PageNotFoundException)
 		{
 			return 'error_404.php';
 		}

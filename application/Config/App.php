@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'https://twit.akrindev.me';
+	public $baseURL = '';
 
 	/*
 	|--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ class App extends BaseConfig
 	| variable so that it is blank.
 	|
 	*/
-	public $indexPage = '';
+	public $indexPage = 'index.php';
 
 	/*
 	|--------------------------------------------------------------------------
@@ -99,7 +99,7 @@ class App extends BaseConfig
 	| dates with the date helper, and can be retrieved through app_timezone()
 	|
 	*/
-	public $appTimezone = 'Asia/Jakarta';
+	public $appTimezone = 'America/Chicago';
 
 	/*
 	|--------------------------------------------------------------------------
@@ -270,6 +270,9 @@ class App extends BaseConfig
 	| and state of your application during that page display. By default it will
 	| NOT be displayed under production environments, and will only display if
 	| CI_DEBUG is true, since if it's not, there's not much to display anyway.
+	|
+	| toolbarMaxHistory = Number of history files, 0 for none or -1 for unlimited
+	|
 	*/
 	public $toolbarCollectors = [
 		'CodeIgniter\Debug\Toolbar\Collectors\Timers',
@@ -281,6 +284,7 @@ class App extends BaseConfig
 		'CodeIgniter\Debug\Toolbar\Collectors\Routes',
 		'CodeIgniter\Debug\Toolbar\Collectors\Events',
 	];
+	public $toolbarMaxHistory = 20;
 
 	/*
 	|--------------------------------------------------------------------------
