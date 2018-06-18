@@ -8,7 +8,7 @@ class User extends Model
 {
   protected $table = 'users';
   protected $allowedFields = [
-  	'username','email','password'
+  	'username','fb_id','link','name','email'
   ];
   protected $useTimestamps = true;
   public $usr;

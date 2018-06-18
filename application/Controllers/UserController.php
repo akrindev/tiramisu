@@ -25,9 +25,14 @@ class UserController extends Controller
 
     $aku = $nyong->where('fb_id',session('fb_id'))->first();
 
-    if($nama = false)
+   $ucapan = new Ucap;
+
+    $ucap = $ucapan->where('user_id',$nyong->getUserId(session('fb_id')))->orderBy('created_at','DESC')->get()->getResult();
+
+    if($nama != false)
     {
       $aku = $nyong->where('fb_id',$nama)->first();
+      $ucap = [];
     }
 
     if(!$aku)
@@ -37,11 +42,6 @@ class UserController extends Controller
 
     $poto = "https://graph.facebook.com/{$aku['fb_id']}/picture?type=normal";
     $nama = $aku['name'];
-
-    $ucapan = new Ucap;
-
-    $ucap = $ucapan->where('user_id',$nyong->getUserId(session('fb_id')))->orderBy('created_at','DESC')->get()->getResult();
-
 
     echo view('header',[
     	'title' => 'Profile ' . $aku['name']
