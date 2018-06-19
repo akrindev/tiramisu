@@ -17,6 +17,14 @@
             <hr>
       <?php endif; ?>
 
+
+      <?php if(session('gagal')):?>
+                  <div class="card-alert alert alert-danger mb-0">
+                    <?=session('gagal')?>
+                  </div>
+            <hr>
+      <?php endif; ?>
+
         <?php if(session('user') && session('role') != 'user'):?>
                     <a href="/store-equip" class="btn btn-secondary">Tambah data equip</a>
                     <a href="/store-mob" class="btn btn-secondary">Tambah data monster</a>

@@ -21,6 +21,10 @@ class UserController extends Controller
 
   public function profile($nama = false)
   {
+
+    if( ! session('user'))
+      return redirect('/')->with('gagal','Kamu harus login terlebih dahulu');
+
     $nyong = new User;
 
     $aku = $nyong->where('fb_id',session('fb_id'))->first();
