@@ -26,7 +26,7 @@ class FbAuth extends Controller
     $helper = $this->fb->getRedirectLoginHelper();
 
     $permissions = ['email']; // Optional permissions
-    $loginUrl = $helper->getLoginUrl('http://localhost:8080/FbAuth/me', $permissions);
+    $loginUrl = $helper->getLoginUrl(base_url().'/FbAuth/me', $permissions);
 
     return redirect($loginUrl);
   }
@@ -93,6 +93,7 @@ class FbAuth extends Controller
 
 
     $sesi = [
+      	'user_id' => $nyong->id,
       	'namaku' => $nyong->name,
     	'fb_id' => $aku['id'],
 		'role'  => $nyong->role,
@@ -110,25 +111,29 @@ class FbAuth extends Controller
     $gue = $this->fb->get('/me?fields=id,name,email,link',session('fb_access_token'))->getGraphUser();
 
 	$aku = new User();
-    $saya = $aku->where('fb_id',$gue->getId())->first();
+
     $nyong = [
     	'fb_id' => $gue->getId(),
       	'username' => '-',
       	'email' => $gue->getEmail(),
-      	'link'	=> $gue->getLink(),
+      	'link'	=> $gue->getLink() ?? '-',
       	'name'	=> $gue->getName(),
     ];
 
     if($aku->insert($nyong))
     {
+      $saya = $aku->where('fb_id',$gue->getId())->asObject()->first();
 
-    $sesi = [
-    	'fb_id' => $aku->fb_id,
-		'role'  => $aku->role,
-      	'user'  => true,
-      	'namaku' => $aku->name
-    ];
+      $sesi = [
+          'user_id' =>  $saya->id,
+          'fb_id' => $saya->fb_id,
+          'role'  => $saya->role,
+          'user'  => true,
+          'namaku' => $saya->name
+      ];
+
       session()->set($sesi);
+
       return redirect('/')->with('sukses','Selamat datang '.$gue->getName());
     }
 
